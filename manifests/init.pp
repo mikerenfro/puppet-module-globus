@@ -3,6 +3,8 @@
 # @example Install and setup a Globus v5.4 endpoint
 #   class { 'globus':
 #     display_name  => 'REPLACE My Site Globus',
+#     client_id     => 'REPLACE-client-id-from-globus',
+#     client_secret => 'REPLACE-client-id-from-globus',
 #     owner         => 'REPLACE-user@example.com',
 #   }
 #
@@ -34,6 +36,10 @@
 #   Globus package name
 # @param display_name
 #   Display name to use when running 'globus-connect-server endpoint setup'
+# @param client_id
+#   GCS_CLI_CLIENT_ID environment variable used when running 'globus-connect-server endpoint setup'
+# @param client_secret
+#   GCS_CLI_CLIENT_SECRET environment variable used when running 'globus-connect-server endpoint setup'
 # @param project_id
 #   --project-id use when running 'globus-connect-server endpoint setup'
 # @param project_admin
@@ -73,6 +79,8 @@
 class globus (
   # Required
   String[1] $display_name,
+  String[1] $client_id,
+  String[1] $client_secret,
   String[1] $owner,
   String[1] $organization,
 

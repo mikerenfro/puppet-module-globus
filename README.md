@@ -29,6 +29,8 @@ The following is the minimum parameters that must be passed to setup Globus v5.4
 ```puppet
 class { 'globus':
   display_name  => 'REPLACE My Site Globus',
+  client_id     => 'REPLACE-client-id-from-globus',
+  client_secret => 'REPLACE-client-id-from-globus',
   owner         => 'REPLACE-user@example.com',
   organization  => 'REPLACE-My Site',
 }

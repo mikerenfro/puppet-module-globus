@@ -46,6 +46,7 @@ shared_examples_for 'globus::config' do |_facts|
     is_expected.to contain_exec('globus-endpoint-setup').with(
       path: '/usr/bin:/bin:/usr/sbin:/sbin',
       command: endpoint_setup.join(' '),
+      environment: ['GCS_CLI_CLIENT_ID=foo', 'GCS_CLI_CLIENT_SECRET=bar'],
       creates: '/var/lib/globus-connect-server/gcs-manager/deployment-key.json',
       logoutput: 'true',
     )

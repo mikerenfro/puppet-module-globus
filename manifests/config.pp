@@ -3,6 +3,8 @@
 class globus::config {
   $endpoint_setup_args = globus::endpoint_setup_args({
       display_name => $globus::display_name,
+      client_id => $globus::client_id,
+      client_secret => $globus::client_secret,
       owner => $globus::owner,
       project_id => $globus::project_id,
       project_admin => $globus::project_admin,
@@ -44,10 +46,11 @@ class globus::config {
   }
   if $globus::run_setup_commands {
     exec { 'globus-endpoint-setup':
-      path      => '/usr/bin:/bin:/usr/sbin:/sbin',
-      command   => $endpoint_setup,
-      creates   => $globus::deployment_key,
-      logoutput => true,
+      path        => '/usr/bin:/bin:/usr/sbin:/sbin',
+      command     => $endpoint_setup,
+      environment => ["GCS_CLI_CLIENT_ID=${globus::client_id}", "GCS_CLI_CLIENT_SECRET=${globus::client_secret}",],
+      creates     => $globus::deployment_key,
+      logoutput   => true,
     }
     exec { 'globus-node-setup':
       path      => '/usr/bin:/bin:/usr/sbin:/sbin',
