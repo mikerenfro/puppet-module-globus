@@ -81,7 +81,7 @@ class globus (
   String[1] $display_name,
   String[1] $client_id,
   String[1] $client_secret,
-  Optional[String[1]] $owner,
+  Optional[String[1]] $owner = undef,
   String[1] $organization,
 
   Variant[Stdlib::Httpsurl, Stdlib::Httpurl] $release_url = 'https://downloads.globus.org/toolkit/globus-connect-server/globus-connect-server-repo-latest.noarch.rpm',
