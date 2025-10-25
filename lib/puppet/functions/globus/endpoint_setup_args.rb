@@ -7,7 +7,7 @@ Puppet::Functions.create_function(:'globus::endpoint_setup_args') do
   def args(values)
     flags = []
     flags << "'#{values['display_name']}'"
-    flags << "--owner '#{values['owner']}'"
+    flags << "--owner '#{values['owner']}'" unless values['owner'].nil?
     flags << "--project-id '#{values['project_id']}'" unless values['project_id'].nil?
     flags << "--project-admin '#{values['project_admin']}'" unless values['project_admin'].nil?
     flags << "--organization '#{values['organization']}'"
